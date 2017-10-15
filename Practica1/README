@@ -1,0 +1,16 @@
+En esta práctica se ha diseñado un tetraedro y un cubo por OpenGL. Las opciones
+habilitadas para esta práctica son:
+
+  Para la visualización de las figuras:
+  - Tecla 1: Visualiza el tetraedro(por defecto).
+  - Tecla 2: Visualiza el cubo.
+  - Tecla 3 (Extra): Visualiza la pirámide.
+  - Tecla 4 (Extra): Visualiza el octaedro.
+  - Tecla 5 (Extra): Visualiza el prisma hexagonal.
+
+  Para la visualización de los distintos modos de dibujo.
+  - Tecla F: Visualiza la figura en modo sólico(por defecto).
+  - Tecla P: Visualiza la figura en modo puntos.
+  - Tecla L: Visualiza la figura en modo alambre.
+  - Tecla C: Visualiza la figura en modo ajedrez.
+  - Tecla A (Extra): Visualiza el modo sólido, puntos y a alambre a la vez.
