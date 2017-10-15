@@ -1,4 +1,5 @@
 # Compiles source #
+###################
 
-./bin/*
-./obj/*
+../bin/*
+../obj/*
