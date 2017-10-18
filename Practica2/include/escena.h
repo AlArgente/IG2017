@@ -23,6 +23,7 @@ private:
   int item;
   float size = 40.0;
   char mode;
+  bool first = false, second = false;
   Tetraedro tetraedro; //(40.0);
   Cubo cubo;           // (40.0);
   Piramide piramide;   //(40.0);
@@ -56,7 +57,7 @@ public:
                    const string _filename, const int _N, const char _ejeR,
                    const char _tapas);
   void inicializar(int UI_window_width, int UI_window_height,
-                   const string _filename);
+                   const string _filename, int _N);
   void redimensionar(int newWidth, int newHeight);
 
   // Dibujar

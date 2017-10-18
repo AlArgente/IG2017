@@ -112,3 +112,8 @@ void Object3d::dibujar(char mode) {
     draw_full();
   }
 }
+
+void Object3d::clear() {
+  points.clear();
+  faces.clear();
+}

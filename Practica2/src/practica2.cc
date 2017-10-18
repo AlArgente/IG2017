@@ -83,9 +83,10 @@ void special_keys(int Tecla1, int x, int y) {
 
 int main(int argc, char **argv) {
 
-  if (argc < 3) {
+  if (argc < 4) {
     cout << "Tiene que pasar al menos 2 argumentos, el fichero ply y si elige "
-            "revolución (revo) o cargar (carg) el documento ply."
+            "revolución (revo) o cargar (carg) el documento ply y un N para "
+            "aplicar revolucion al ply o al perfil de puntos."
          << endl;
     exit(-1);
   }
@@ -145,7 +146,8 @@ int main(int argc, char **argv) {
     escena->inicializar(UI_window_width, UI_window_height, string(argv[1]),
                         stoi(argv[3]), tolower(*argv[4]), *argv[5]);
   } else {
-    escena->inicializar(UI_window_width, UI_window_height, string(argv[1]));
+    escena->inicializar(UI_window_width, UI_window_height, string(argv[1]),
+                        stoi(argv[3]));
   }
   // inicio del bucle de eventos
   glutMainLoop();

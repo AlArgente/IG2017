@@ -19,6 +19,8 @@ Las opciones habilitadas para esta práctica son:
   - Tecla L: Visualiza la figura en modo alambre.
   - Tecla C: Visualiza la figura en modo ajedrez.
   - Tecla A (Extra): Visualiza el modo sólido, puntos y a alambre a la vez.
+  - Tecla N: Tras pulsar N podremos indicar por terminal un nuevo N para el número de revoluciones.
+  - Tecla Y: Añadir o quitar las tapas del modelo por revolución generado.
 
 Por lo tanto hay dos formas de ejecutar el programa:
   1º forma: bin/practica2 [NOMBRE_PLY] cargar

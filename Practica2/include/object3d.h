@@ -21,8 +21,6 @@ class Object3d {
 
 protected:
   int numpoints, numedges;
-  vector<Point3d> points1;
-  vector<Face> faces1;
   vector<Point3d> points;
   vector<Face> faces;
 
@@ -36,6 +34,7 @@ public:
   void draw_chess();
   void draw_full();
   void dibujar(char mode);
+  void clear();
 };
 
 #endif

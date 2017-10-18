@@ -63,16 +63,16 @@ void ObjectPerfil::initialice3(float tl, int N) {
   points.push_back(InsertPoint3d(-tl, -tl, tl));
   points.push_back(InsertPoint3d(tl, -tl, tl));
   points.push_back(InsertPoint3d(tl, -tl, -tl));
-  points.push_back(InsertPoint3d(-tl, -tl, -tl));
-  points.push_back(InsertPoint3d(-tl, -tl, tl));
+  // points.push_back(InsertPoint3d(-tl, -tl, -tl));
+  // points.push_back(InsertPoint3d(-tl, -tl, tl));
 
   if (points[0].x == points[points.size() - 1].x &&
       points[0].y == points[points.size() - 1].y &&
       points[0].z == points[points.size() - 1].z) {
     points.pop_back();
-    const int TAM1 = points.size();
-    objetoBarrido(TAM1, N);
   }
+  const int TAM1 = points.size();
+  objetoBarrido(TAM1, N);
 }
 
 // Método revolución para el eje Y
@@ -400,6 +400,6 @@ void ObjectPerfil::objetoBarrido(int TAM1, int N) {
     faces.push_back(InsertFace(i + 1 + TAM1, i + TAM1, i));
   }
   // Añadimos la última cara
-  faces.push_back(InsertFace(TAM1 - 1, 0, TAM1));
-  faces.push_back(InsertFace(TAM1, (TAM1 * 2 - 1), TAM1 - 1));
+  /*faces.push_back(InsertFace(TAM1 - 1, 0, TAM1));
+  faces.push_back(InsertFace(TAM1, (TAM1 * 2 - 1), TAM1 - 1));*/
 }

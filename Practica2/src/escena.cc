@@ -3,9 +3,13 @@
 #endif
 
 #include "escena.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <cstdio>
+#include <ctype.h>
 #include <iostream>
 
 using namespace std;
@@ -23,7 +27,7 @@ Escena::Escena() {
 void Escena::inicializar(int UI_window_width, int UI_window_height,
                          const string _filename, const int _N, const char _ejeR,
                          const char _tapas) {
-
+  // Width, Height, filename, N, ejeR, d_tapas
   glClearColor(1, 1, 1, 1); // se indica cual sera el color para limpiar la
                             // ventana	(r,v,a,al)
 
@@ -44,16 +48,18 @@ void Escena::inicializar(int UI_window_width, int UI_window_height,
   ply = PlyObject(filename);
   revoply = ObjectPerfil(filename, N, ejeR, d_tapas);
   plybarri.initialice3(40.0, 80);
+  first = true;
 }
 
 void Escena::inicializar(int UI_window_width, int UI_window_height,
-                         const string _filename) {
-
+                         const string _filename, int _N) {
+  // Width, Height, filename, N
   glClearColor(1, 1, 1, 1); // se indica cual sera el color para limpiar la
                             // ventana	(r,v,a,al)
 
   glEnable(GL_DEPTH_TEST); // se habilita el z-bufer
   filename = _filename;
+  N = _N;
   this->change_projection();
   Width = UI_window_width / 10;
   Height = UI_window_height / 10;
@@ -66,6 +72,7 @@ void Escena::inicializar(int UI_window_width, int UI_window_height,
   ply = PlyObject(filename);
   revoply.initialice2(N, ejeR, d_tapas);
   plybarri.initialice3(40.0, 80);
+  second = true;
 }
 
 //**************************************************************************
@@ -173,6 +180,33 @@ int Escena::teclaPulsada(unsigned char Tecla1, int x, int y) {
   } else if (toupper(Tecla1) == 'A') {
     mode = 'A';
     cout << "Dibujando todo a la vez." << endl;
+    return 0;
+  } else if (toupper(Tecla1) == 'N') {
+    int _N;
+    cout << "Introduzca el N nuevo para aplicar revolución: " << endl;
+    cin >> _N;
+    if (first) {
+      revoply.clear();
+      plybarri.clear();
+      this->inicializar(Width * 10, Height * 10, filename, _N, ejeR, d_tapas);
+    } else if (second) {
+      ply.clear();
+      revoply.clear();
+      plybarri.clear();
+      this->inicializar(Width * 10, Height * 10, filename, _N);
+    }
+    return 0;
+  } else if (toupper(Tecla1) == 'T') {
+    if (first) {
+      if (d_tapas == 'S') {
+        d_tapas = 'N';
+      } else {
+        d_tapas = 'S';
+      }
+      revoply.clear();
+      plybarri.clear();
+      this->inicializar(Width * 10, Height * 10, filename, N, ejeR, d_tapas);
+    }
     return 0;
   }
 }
