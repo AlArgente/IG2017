@@ -1,0 +1,50 @@
+Para compilar: make clean && make
+Así eliminamos posibles .o y ficheros ejecutables y luego los creamos otra vez.
+
+Las opciones habilitadas para esta práctica son:
+
+  Para la visualización de las figuras:
+  - Tecla 1: Visualiza el tetraedro(por defecto).
+  - Tecla 2: Visualiza el cubo.
+  - Tecla 3 (Extra): Visualiza la pirámide.
+  - Tecla 4 (Extra): Visualiza el octaedro.
+  - Tecla 5 (Extra): Visualiza el prisma hexagonal.
+  - Tecla 6: Visualiza el modelo PLY pasado por parámetro sin aplicar revolución.
+  - Tecla 7: Podemos o bien cargar un modelo PLY y aplicarle revolución o bien un perfil de puntos predefinido.
+  - Tecla 8 (extra): Carga un perfil de puntos predefinido y aplica barrido sobre el perfil.
+  - Tecla 9: Visualiza el modelo Jerárquico
+
+  Para la visualización de los distintos modos de dibujo.
+  - Tecla F: Visualiza la figura en modo sólido(por defecto).
+  - Tecla P: Visualiza la figura en modo puntos.
+  - Tecla L: Visualiza la figura en modo alambre.
+  - Tecla C: Visualiza la figura en modo ajedrez.
+  - Tecla A (Extra): Visualiza el modo sólido, puntos y a alambre a la vez.
+  - Tecla N: Tras pulsar N podremos indicar por terminal un nuevo N para el número de revoluciones.
+  - Tecla T: Añadir o quitar las tapas del modelo por revolución generado.
+  - Tecla G: Se puede cambiar la velocidad de TODO el modelo por terminal.
+  - Tecla H: Se muestra un menú de opciones para cambiar la velocidad individualmente de los componentes del modelo.
+	- Tecla 1: Se puede modificar la velocidad a la que oscila el péndulo.
+	- Tecla 2: Se puede modificar la velocidad a la que sube y baja el spinner.
+	- Tecla 3: Se puede modificar la velocidad a la que sube/baja el spinner.
+	- Tecla 4: Se puede modificar la velocidad a la que gira el modelo.
+	- Tecla 5: Se puede modificar la velocidad de todo el modelo.
+
+  Para poder "animar" al modelo jerárquico:
+  - Tecla F1: El modelo gira en sentido antihorario.
+  - Tecla F2: Sube el spinner hasta un máximo.
+  - Tecla F3: Baja el spinner hasta un mínimo.
+  - Tecla F4: Sube los brazos del spinner hasta un máximo.
+  - Tecla F5: Baja los brazos del spinner hasta un mínimo.
+  - Tecla F6: Mueve el péndulo hacia atrás.
+  - Tecla F7: Mueve el péndulo hacia alante.
+  - Tecla F8: El modelo gira en sentido horario.
+  - Tecla F9: Simula el pasaje de una atracción, volviendo a una posición inicial y posteriormente moviéndose.
+  - Tecla F10: Movimiento completo del modelo de forma síncrona a como estaba pensado.
+
+
+Por lo tanto hay dos formas de ejecutar el programa:
+  1º forma: bin/practica2 [NOMBRE_PLY] cargar
+	Con la 1º forma dibujaremos el ply pasado por parámetro, el cuál está completo y no necesita de aplicar revolución sobre él. Y se creará un perfil de puntos por defecto sobre el que se aplicará revolución.
+  2º forma: bin/practica2 [NOMBRE_PLY] revo 5 y S
+	Con la 2º forma dibujaremos el ply pasado por parámetro y le aplicaremos revolución un total de N veces, 5 en este caso, y se aplicará sobre el eje y, y se pintarán las tapas. Los parámetros por defecto para N, número revoluciones del perfil dado, es 12, para el eje sobre el que rotar por defecto es Y y para saber si dibujar o no las caras es S. Al dibujarlo así si pulsamos la tecla 6 sólo será visible por puntos ya que no crearemos las caras y solo leeremos los puntos.
