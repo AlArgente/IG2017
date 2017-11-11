@@ -24,11 +24,14 @@ public:
   // Método revolución para el eje z
   void objetoRevolucionEjeZ(int N = 12, char _drawtapas = 'S');
   // Método para calcular las caras con tapas, eje Y
-  void calcularCarasTapasY(int TAM);
+  void calcularCarasTapasY(int TAM, Point3d p_guardado1, bool p_quitado1,
+                           Point3d p_guardado2, bool p_quitado2);
   // Método para calcular las caras sin tapas, eje Y
   void calcularCarasNoTapasY(int TAM);
   // Método para calcular las caras con tapas, eje X
-  void calcularCarasTapasX(int TAM);
+  // void calcularCarasTapasX(int TAM);
+  void calcularCarasTapasX(int TAM, Point3d p_guardado1, bool p_quitado1,
+                           Point3d p_guardado2, bool p_quitado2);
   // Método para calcular las caras sin tapas, eje X
   void calcularCarasNoTapasX(int TAM);
   // Método para calcular las caras con tapas, eje Z

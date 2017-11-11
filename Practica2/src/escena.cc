@@ -206,6 +206,17 @@ int Escena::teclaPulsada(unsigned char Tecla1, int x, int y) {
       revoply.clear();
       plybarri.clear();
       this->inicializar(Width * 10, Height * 10, filename, N, ejeR, d_tapas);
+    } else {
+      if (second) {
+        if (d_tapas == 'S') {
+          d_tapas = 'N';
+        } else {
+          d_tapas = 'S';
+        }
+      }
+      revoply.clear();
+      plybarri.clear();
+      this->inicializar(Width * 10, Height * 10, filename, N);
     }
     return 0;
   }

@@ -79,14 +79,27 @@ void ObjectPerfil::initialice3(float tl, int N) {
 void ObjectPerfil::objetoRevolucionEjeY(int N, char _drawtapas) {
   bool drawtapas = true;
   drawtapas = ((toupper(_drawtapas) == 'S') ? true : false);
+  bool p_quitado1 = false;
+  bool p_quitado2 = false;
+  Point3d p_guardado1, p_guardado2;
 
   // Borrar el 1ºer elemento en caso de estar en el eje y
-  if (points[0].x == 0.0)
+  if (points[0].x == 0.0) {
+    p_guardado1.x = points[0].x;
+    p_guardado1.y = points[0].y;
+    p_guardado1.z = points[0].z;
+    p_quitado1 = true;
     points.erase(points.begin());
+  }
 
   // Borrar el último elemento en caso de estar en el eje y
-  if (points[points.size() - 1].x == 0.0)
+  if (points[points.size() - 1].x == 0.0) {
+    p_guardado2.x = points[points.size() - 1].x;
+    p_guardado2.y = points[points.size() - 1].y;
+    p_guardado2.z = points[points.size() - 1].z;
+    p_quitado2 = true;
     points.pop_back();
+  }
 
   // Definimos una constante para los grados
   double grade = (2 * PI) / N;
@@ -108,7 +121,7 @@ void ObjectPerfil::objetoRevolucionEjeY(int N, char _drawtapas) {
 
   if (drawtapas)
     // Calculamos las caras con tapas
-    calcularCarasTapasY(TAM);
+    calcularCarasTapasY(TAM, p_guardado1, p_quitado1, p_guardado2, p_quitado2);
   else
     // Calculamos las caras sin tapas
     calcularCarasNoTapasY(TAM);
@@ -117,15 +130,28 @@ void ObjectPerfil::objetoRevolucionEjeY(int N, char _drawtapas) {
 // Método revolución para el eje X
 void ObjectPerfil::objetoRevolucionEjeX(int N, char _drawtapas) {
   bool drawtapas = true;
+  Point3d p_guardado2, p_guardado1;
+  bool p_quitado2 = false;
+  bool p_quitado1 = false;
   drawtapas = ((toupper(_drawtapas) == 'S') ? true : false);
 
   // Borrar el 1ºer elemento en caso de estar en el eje y
-  if (points[0].y == 0.0)
+  if (points[0].y == 0.0) {
+    p_guardado1.x = points[0].x;
+    p_guardado1.y = points[0].y;
+    p_guardado1.z = points[0].z;
+    p_quitado1 = true;
     points.erase(points.begin());
+  }
 
   // Borrar el último elemento en caso de estar en el eje y
-  if (points[points.size() - 1].y == 0.0)
+  if (points[points.size() - 1].y == 0.0) {
+    p_guardado2.x = points[points.size() - 1].x;
+    p_guardado2.y = points[points.size() - 1].y;
+    p_guardado2.z = points[points.size() - 1].z;
+    p_quitado2 = true;
     points.pop_back();
+  }
 
   // Definimos una constante para los grados
   double grade = (2 * PI) / N;
@@ -147,7 +173,7 @@ void ObjectPerfil::objetoRevolucionEjeX(int N, char _drawtapas) {
 
   if (drawtapas)
     // Calculamos las caras con tapas
-    calcularCarasTapasX(TAM);
+    calcularCarasTapasX(TAM, p_guardado1, p_quitado1, p_guardado2, p_quitado2);
   else
     // Calculamos las caras sin tapas
     calcularCarasNoTapasX(TAM);
@@ -156,14 +182,27 @@ void ObjectPerfil::objetoRevolucionEjeX(int N, char _drawtapas) {
 void ObjectPerfil::objetoRevolucionEjeZ(int N, char _drawtapas) {
   bool drawtapas = true;
   drawtapas = ((toupper(_drawtapas) == 'S') ? true : false);
+  Point3d p_guardado2, p_guardado1;
+  bool p_quitado2 = false;
+  bool p_quitado1 = false;
 
   // Borrar el 1ºer elemento en caso de estar en el eje y
-  if (points[0].y == 0.0)
+  if (points[0].y == 0.0) {
+    p_guardado1.x = points[0].x;
+    p_guardado1.y = points[0].y;
+    p_guardado1.z = points[0].z;
+    p_quitado1 = true;
     points.erase(points.begin());
+  }
 
   // Borrar el último elemento en caso de estar en el eje y
-  if (points[points.size() - 1].y == 0.0)
+  if (points[points.size() - 1].y == 0.0) {
+    p_guardado2.x = points[points.size() - 1].x;
+    p_guardado2.y = points[points.size() - 1].y;
+    p_guardado2.z = points[points.size() - 1].z;
+    p_quitado2 = true;
     points.pop_back();
+  }
 
   // Definimos una constante para los grados
   double grade = (2 * PI) / N;
@@ -193,7 +232,9 @@ void ObjectPerfil::objetoRevolucionEjeZ(int N, char _drawtapas) {
 }
 
 // Método para calcular las caras con tapas
-void ObjectPerfil::calcularCarasTapasY(int TAM) {
+void ObjectPerfil::calcularCarasTapasY(int TAM, Point3d p_guardado1,
+                                       bool p_quitado1, Point3d p_guardado2,
+                                       bool p_quitado2) {
   // Calculamos las caras/
   for (int i = 0; i < points.size() - TAM; i += TAM) {
     for (int j = i; j < (TAM - 1) + i; ++j) {
@@ -213,7 +254,11 @@ void ObjectPerfil::calcularCarasTapasY(int TAM) {
   // inicial para calcular las tapas superiores
 
   // Primero calulamos la proyección del punto inicial dado
-  points.push_back(InsertPoint3d(0.0, points[0].y, points[0].z));
+  if (p_quitado1) {
+    points.push_back(p_guardado1);
+  } else {
+    points.push_back(InsertPoint3d(0.0, points[0].y, points[0].z));
+  }
 
   // Ahora calculamos la tapa inferior
   for (int i = 0; i < points.size() - TAM - 1; i += TAM)
@@ -223,7 +268,11 @@ void ObjectPerfil::calcularCarasTapasY(int TAM) {
   faces.push_back(InsertFace(points.size() - TAM - 1, 0, points.size() - 1));
 
   // Calculamos la proyección del punto final dado
-  points.push_back(InsertPoint3d(0.0, points[TAM - 1].y, points[TAM - 1].z));
+  if (p_quitado2) {
+    points.push_back(p_guardado2);
+  } else {
+    points.push_back(InsertPoint3d(0.0, points[TAM - 1].y, points[TAM - 1].z));
+  }
 
   // Ahora calculamos la tapa superior
   for (int i = TAM - 1; i < points.size() - (TAM - 1); i += TAM)
@@ -259,7 +308,9 @@ void ObjectPerfil::calcularCarasNoTapasY(int TAM) {
   points.push_back(InsertPoint3d(0.0, points[TAM - 1].y, points[TAM - 1].z));
 }
 
-void ObjectPerfil::calcularCarasTapasX(int TAM) {
+void ObjectPerfil::calcularCarasTapasX(int TAM, Point3d p_guardado1,
+                                       bool p_quitado1, Point3d p_guardado2,
+                                       bool p_quitado2) {
   // Calculamos las caras/
   for (int i = 0; i < points.size() - TAM; i += TAM) {
     for (int j = i; j < (TAM - 1) + i; ++j) {
@@ -279,7 +330,12 @@ void ObjectPerfil::calcularCarasTapasX(int TAM) {
   // inicial para calcular las tapas superiores
 
   // Primero calulamos la proyección del punto inicial dado
-  points.push_back(InsertPoint3d(points[0].x, points[0].y, 0.0));
+  if (p_quitado1) {
+    points.push_back(p_guardado1);
+  } else {
+    points.push_back(InsertPoint3d(points[0].x, 0.0, points[0].z));
+  }
+  // points.push_back(InsertPoint3d(points[0].x, points[0].y, 0.0));
 
   // Ahora calculamos la tapa inferior
   for (int i = 0; i < points.size() - TAM - 1; i += TAM)
@@ -289,7 +345,11 @@ void ObjectPerfil::calcularCarasTapasX(int TAM) {
   faces.push_back(InsertFace(points.size() - TAM - 1, 0, points.size() - 1));
 
   // Calculamos la proyección del punto final dado
-  points.push_back(InsertPoint3d(points[TAM - 1].x, points[TAM - 1].y, 0.0));
+  if (p_quitado2) {
+    points.push_back(p_guardado2);
+  } else {
+    points.push_back(InsertPoint3d(points[TAM - 1].x, 0.0, points[TAM - 1].z));
+  }
 
   // Ahora calculamos la tapa superior
   for (int i = TAM - 1; i < points.size() - (TAM - 1); i += TAM)

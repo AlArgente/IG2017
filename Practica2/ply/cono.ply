@@ -1,0 +1,11 @@
+ply
+format ascii 1.0
+element vertex 2
+property float32 x
+property float32 y
+property float32 z
+element face 0
+property list uchar unit vertex_indices
+end_header
+50.0 0.0 0.0
+0.0 50.5 0.0
